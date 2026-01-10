@@ -1,0 +1,10 @@
+[
+  {
+    "is_gym_equipment": true,
+    "ticket_id": "TICKET-12345",
+    "equipment_name": "Dumbbell",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Open"
+  }
+]

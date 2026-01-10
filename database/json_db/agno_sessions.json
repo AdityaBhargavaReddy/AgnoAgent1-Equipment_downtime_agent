@@ -1,0 +1,264 @@
+[
+  {
+    "session_id": "f4e4118d-cbcb-4fb3-b832-d5332628bba6",
+    "agent_id": "All in One Agent",
+    "team_id": null,
+    "user_id": null,
+    "workflow_id": null,
+    "session_data": {
+      "session_state": {},
+      "session_metrics": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cost": null,
+        "audio_input_tokens": 0,
+        "audio_output_tokens": 0,
+        "audio_total_tokens": 0,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0,
+        "timer": null,
+        "time_to_first_token": null,
+        "duration": 1.2656680999789387,
+        "provider_metrics": null,
+        "additional_metrics": null
+      }
+    },
+    "metadata": null,
+    "agent_data": {
+      "name": "All in One Agent",
+      "agent_id": "All in One Agent",
+      "model": {
+        "provider": "Groq",
+        "id": "llama-3.3-70b-versatile",
+        "name": "Groq"
+      }
+    },
+    "runs": [
+      {
+        "run_id": "09aa762c-bb43-4510-b4f3-f432e7232a4a",
+        "agent_id": "All in One Agent",
+        "agent_name": "All in One Agent",
+        "session_id": "f4e4118d-cbcb-4fb3-b832-d5332628bba6",
+        "content": "The image shows a broken dumbbell on a black background. The dumbbell is a common piece of gym equipment used for strength training, but in this case, it appears to be damaged or broken. \n\n",
+        "content_type": "str",
+        "model": "llama-3.3-70b-versatile",
+        "model_provider": "Groq",
+        "session_state": {},
+        "created_at": 1768046885,
+        "status": "ERROR",
+        "metrics": {
+          "time_to_first_token": 0.015300299972295761,
+          "duration": 1.2656680999789387
+        },
+        "events": [
+          {
+            "created_at": 1768046887,
+            "event": "RunError",
+            "agent_id": "All in One Agent",
+            "agent_name": "All in One Agent",
+            "run_id": "09aa762c-bb43-4510-b4f3-f432e7232a4a",
+            "session_id": "f4e4118d-cbcb-4fb3-b832-d5332628bba6",
+            "content": "tool call validation failed: parameters for tool store_ticket did not match schema: errors: [missing properties: 'ticket']"
+          }
+        ],
+        "input": {
+          "input_content": "Generate text from this image: https://www.shutterstock.com/shutterstock/photos/559490020/display_1500/stock-photo-broken-dumbbell-and-on-black-background-559490020.jpg"
+        }
+      }
+    ],
+    "summary": null,
+    "created_at": 1768046885,
+    "updated_at": 1768046885,
+    "session_type": "agent"
+  },
+  {
+    "session_id": "fa13604f-e9fe-47ef-aa9d-d6a50890ba66",
+    "agent_id": "All in One Agent",
+    "team_id": null,
+    "user_id": null,
+    "workflow_id": null,
+    "session_data": {
+      "session_state": {},
+      "session_metrics": {
+        "input_tokens": 1342,
+        "output_tokens": 114,
+        "total_tokens": 1456,
+        "cost": null,
+        "audio_input_tokens": 0,
+        "audio_output_tokens": 0,
+        "audio_total_tokens": 0,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0,
+        "timer": null,
+        "time_to_first_token": null,
+        "duration": 1.3533283001743257,
+        "provider_metrics": {
+          "completion_time": 0.109159189,
+          "prompt_time": 0.036541338,
+          "queue_time": 0.058845751,
+          "total_time": 0.145700527
+        },
+        "additional_metrics": null
+      }
+    },
+    "metadata": null,
+    "agent_data": {
+      "name": "All in One Agent",
+      "agent_id": "All in One Agent",
+      "model": {
+        "id": "llama-3.3-70b-versatile",
+        "name": "Groq",
+        "provider": "Groq"
+      }
+    },
+    "runs": [
+      {
+        "run_id": "3c31d7a2-0bdf-4d0f-be5b-59d3141db1eb",
+        "agent_id": "All in One Agent",
+        "agent_name": "All in One Agent",
+        "session_id": "fa13604f-e9fe-47ef-aa9d-d6a50890ba66",
+        "content": "{\"is_gym_equipment\": true, \"ticket_id\": \"TICKET-12345\", \"equipment_name\": \"Dumbbell\", \"equipment_type\": \"Free Weights\", \"urgency\": \"High\", \"status\": \"Open\"}",
+        "content_type": "str",
+        "model": "llama-3.3-70b-versatile",
+        "model_provider": "Groq",
+        "session_state": {},
+        "created_at": 1768047309,
+        "status": "COMPLETED",
+        "metrics": {
+          "input_tokens": 1342,
+          "output_tokens": 114,
+          "total_tokens": 1456,
+          "time_to_first_token": 1.0923971000593156,
+          "duration": 1.3533283001743257,
+          "provider_metrics": {
+            "completion_time": 0.109159189,
+            "prompt_time": 0.036541338,
+            "queue_time": 0.058845751,
+            "total_time": 0.145700527
+          }
+        },
+        "messages": [
+          {
+            "id": "c4daaef6-71d0-4e49-9167-32e4c11fbfbf",
+            "content": "Performs gym equipment classification and ticket creation based on image or text input.\n<instructions>\nYou are a Gym Equipment Classification and Ticket Creation Agent.\n\nYou may receive:\n- an image\n- or a text description\n- or both\n\nYour task:\n\n1. Determine whether the input refers to gym or fitness equipment.\n\n2. If the input does NOT refer to gym or fitness equipment:\n- Respond ONLY with the following JSON\n- Do NOT call any tool\n\n{\n  \"is_gym_equipment\": false\n}\n\n3. If the input DOES refer to gym or fitness equipment:\n\n- Create ticket data using the fields below\n- Call the tool `store_ticket` EXACTLY ONCE\n- Pass each field as a separate argument (not nested)\n- After calling the tool, return the SAME JSON as the final response\n\nJSON structure to generate and return:\n\n{\n  \"is_gym_equipment\": true,\n  \"ticket_id\": \"TICKET-12345\",\n  \"equipment_name\": \"Treadmill\",\n  \"equipment_type\": \"Cardio\",\n  \"urgency\": \"High\",\n  \"status\": \"Open\"\n}\n\nRules:\n- Output must be valid JSON\n- Do NOT include explanations\n- Do NOT include comments\n- Do NOT include markdown\n- Do NOT include extra text\n- ticket_id must follow format: TICKET-<5 digits>\n- equipment_type must be one of: Cardio, Strength, Free Weights, Functional, Machine-based\n- urgency must be one of: High, Medium, Low, Unknown\n- status must be one of: Open, In Progress, Resolved\n- Base urgency only on visible or described condition\n\n\n</instructions>",
+            "from_history": false,
+            "stop_after_tool_call": false,
+            "role": "system",
+            "created_at": 1768047309
+          },
+          {
+            "id": "7186a8ca-7d2f-4f47-864a-397819d58cd1",
+            "content": "Generate text from this image: https://www.shutterstock.com/shutterstock/photos/559490020/display_1500/stock-photo-broken-dumbbell-and-on-black-background-559490020.jpg",
+            "from_history": false,
+            "stop_after_tool_call": false,
+            "role": "user",
+            "created_at": 1768047309
+          },
+          {
+            "id": "d7250f60-2d50-4efd-aca4-4fbd517155c6",
+            "from_history": false,
+            "stop_after_tool_call": false,
+            "role": "assistant",
+            "tool_calls": [
+              {
+                "id": "58yav2gyq",
+                "type": "function",
+                "function": {
+                  "name": "store_ticket",
+                  "arguments": "{\"equipment_name\":\"Dumbbell\",\"equipment_type\":\"Free Weights\",\"is_gym_equipment\":true,\"status\":\"Open\",\"ticket_id\":\"TICKET-12345\",\"urgency\":\"High\"}"
+                }
+              }
+            ],
+            "metrics": {
+              "input_tokens": 639,
+              "output_tokens": 61,
+              "total_tokens": 700,
+              "provider_metrics": {
+                "completion_time": 0.140472616,
+                "prompt_time": 0.031285468,
+                "queue_time": 0.053158162,
+                "total_time": 0.171758084
+              }
+            },
+            "created_at": 1768047309
+          },
+          {
+            "id": "72c5bf70-b88f-43b4-b88c-c9eb5dbff958",
+            "content": "Ticket stored successfully",
+            "from_history": false,
+            "stop_after_tool_call": false,
+            "role": "tool",
+            "tool_call_id": "58yav2gyq",
+            "tool_name": "store_ticket",
+            "tool_args": {
+              "equipment_name": "Dumbbell",
+              "equipment_type": "Free Weights",
+              "is_gym_equipment": true,
+              "status": "Open",
+              "ticket_id": "TICKET-12345",
+              "urgency": "High"
+            },
+            "tool_call_error": false,
+            "created_at": 1768047310
+          },
+          {
+            "id": "3cf42da0-5d56-47a4-9cf1-fc8bb66950ec",
+            "content": "{\"is_gym_equipment\": true, \"ticket_id\": \"TICKET-12345\", \"equipment_name\": \"Dumbbell\", \"equipment_type\": \"Free Weights\", \"urgency\": \"High\", \"status\": \"Open\"}",
+            "from_history": false,
+            "stop_after_tool_call": false,
+            "role": "assistant",
+            "metrics": {
+              "input_tokens": 703,
+              "output_tokens": 53,
+              "total_tokens": 756,
+              "provider_metrics": {
+                "completion_time": 0.109159189,
+                "prompt_time": 0.036541338,
+                "queue_time": 0.058845751,
+                "total_time": 0.145700527
+              }
+            },
+            "created_at": 1768047310
+          }
+        ],
+        "tools": [
+          {
+            "tool_call_id": "58yav2gyq",
+            "tool_name": "store_ticket",
+            "tool_args": {
+              "equipment_name": "Dumbbell",
+              "equipment_type": "Free Weights",
+              "is_gym_equipment": true,
+              "status": "Open",
+              "ticket_id": "TICKET-12345",
+              "urgency": "High"
+            },
+            "tool_call_error": false,
+            "result": "Ticket stored successfully",
+            "metrics": {},
+            "child_run_id": null,
+            "stop_after_tool_call": false,
+            "created_at": 1768047310,
+            "requires_confirmation": null,
+            "confirmed": null,
+            "confirmation_note": null,
+            "requires_user_input": null,
+            "user_input_schema": null,
+            "answered": null,
+            "external_execution_required": null
+          }
+        ],
+        "input": {
+          "input_content": "Generate text from this image: https://www.shutterstock.com/shutterstock/photos/559490020/display_1500/stock-photo-broken-dumbbell-and-on-black-background-559490020.jpg"
+        }
+      }
+    ],
+    "summary": null,
+    "created_at": 1768047309,
+    "updated_at": 1768047309,
+    "session_type": "agent"
+  }
+]
