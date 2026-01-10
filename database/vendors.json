@@ -1,0 +1,38 @@
+[
+  {
+    "vendor_id": "VEND-001",
+    "vendor_name": "CardioFix Services",
+    "capabilities": {
+      "equipment_types": ["Cardio"],
+      "equipment_names": ["Treadmill", "Elliptical", "Exercise Bike"],
+      "urgency_supported": ["High", "Medium"]
+    },
+    "sla_hours": 4,
+    "email": "bhargavareddy2005@gmail.com",
+    "active": true
+  },
+  {
+    "vendor_id": "VEND-002",
+    "vendor_name": "StrengthPro Maintenance",
+    "capabilities": {
+      "equipment_types": ["Strength", "Machine-based"],
+      "equipment_names": ["Chest Press", "Leg Press", "Lat Pulldown"],
+      "urgency_supported": ["High", "Medium", "Low"]
+    },
+    "sla_hours": 6,
+    "email": "strengthpro@gmail.com",
+    "active": true
+  },
+  {
+    "vendor_id": "VEND-003",
+    "vendor_name": "IronWorks Repairs",
+    "capabilities": {
+      "equipment_types": ["Free Weights"],
+      "equipment_names": ["Dumbbell", "Barbell", "Weight Plates"],
+      "urgency_supported": ["High", "Medium", "Low"]
+    },
+    "sla_hours": 12,
+    "email": "bhargavareddy2005@gmail.com",
+    "active": true
+  }
+]

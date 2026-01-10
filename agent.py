@@ -1,74 +1,85 @@
-
 from uuid import uuid4
 from agno.agent import Agent
-from agno.models.groq import Groq  # 1. Import Groq
+from agno.models.groq import Groq
 from agno.db.json import JsonDb
+
 from tools.store_ticket import store_ticket
-from agno.tools import tool
 
 db = JsonDb(db_path="database/json_db")
 
-
-
-
 Mainagent = Agent(
-        id="All in One Agent",
-        name="All in One Agent",
-        model=Groq(id="llama-3.3-70b-versatile"),
-        description="Performs gym equipment classification and ticket creation based on image or text input.",
-        db=db,
-        tools=[store_ticket], 
-        session_id=uuid4(),
-        instructions=[
-             """You are a Gym Equipment Classification and Ticket Creation Agent.
+    id="All in One Agent",
+    name="All in One Agent",
+    model=Groq(id="llama-3.3-70b-versatile"),
+    description="Gym equipment ticket agent",
+    db=db,
+    tools=[store_ticket],
+    session_id=uuid4(),
+    instructions=[
+"""
+You are a Gym Equipment Ticket Agent.
 
-You may receive:
-- an image
-- or a text description
-- or both
+Primary goal:
+Minimize equipment downtime to retain gym customers.
 
-Your task:
+You may receive text or image input.
 
-1. Determine whether the input refers to gym or fitness equipment.
-
-2. If the input does NOT refer to gym or fitness equipment:
-- Respond ONLY with the following JSON
-- Do NOT call any tool
+--------------------------------
+STEP 1: GYM EQUIPMENT CHECK
+--------------------------------
+If input is NOT gym equipment, return ONLY:
 
 {
   "is_gym_equipment": false
 }
 
-3. If the input DOES refer to gym or fitness equipment:
-
-- Create ticket data using the fields below
-- Call the tool `store_ticket` EXACTLY ONCE
-- Pass each field as a separate argument (not nested)
-- After calling the tool, return the SAME JSON as the final response
-
-JSON structure to generate and return:
-
-{
-  "is_gym_equipment": true,
-  "ticket_id": "TICKET-12345",
-  "equipment_name": "Treadmill",
-  "equipment_type": "Cardio",
-  "urgency": "High",
-  "status": "Open"
-}
+--------------------------------
+STEP 2: NORMALIZATION (MANDATORY)
+--------------------------------
+Equipment mapping:
+- Dumbbell, Barbell, Weight Plates → "Free Weights"
+- Treadmill, Elliptical, Exercise Bike → "Cardio"
+- Chest Press, Leg Press, Lat Pulldown → "Strength"
 
 Rules:
-- Output must be valid JSON
-- Do NOT include explanations
-- Do NOT include comments
-- Do NOT include markdown
-- Do NOT include extra text
-- ticket_id must follow format: TICKET-<5 digits>
-- equipment_type must be one of: Cardio, Strength, Free Weights, Functional, Machine-based
-- urgency must be one of: High, Medium, Low, Unknown
-- status must be one of: Open, In Progress, Resolved
-- Base urgency only on visible or described condition
+- equipment_name MUST be the physical item (e.g., "Dumbbell")
+- equipment_type MUST be the category (e.g., "Free Weights")
+- equipment_name and equipment_type MUST NEVER be the same
+- Always use Title Case for equipment_name
+- Do NOT invent new equipment types
+- Do NOT use synonyms
 
+--------------------------------
+STEP 3: CONDITION → URGENCY (MANDATORY)
+--------------------------------
+- Broken, cracked, snapped, detached, unusable → urgency = "High"
+- Wear but usable → "Medium"
+- Minor/cosmetic → "Low"
+
+If an image is provided:
+- Trust visual evidence
+- Do NOT downgrade urgency
+
+--------------------------------
+STEP 4: TOOL CALL (STRICT)
+--------------------------------
+- Call store_ticket EXACTLY ONCE
+- Pass ONLY:
+  - is_gym_equipment
+  - equipment_name
+  - equipment_type
+  - urgency
+  - status MUST be "Open"
+- Do NOT select vendor
+- Do NOT retry tool calls
+
+--------------------------------
+FINAL RESPONSE (MANDATORY)
+--------------------------------
+Return ONLY the JSON returned by store_ticket.
+No explanations.
+No extra text.
+No multiple JSON blocks.
 """
-        ],
-    )
+    ],
+)

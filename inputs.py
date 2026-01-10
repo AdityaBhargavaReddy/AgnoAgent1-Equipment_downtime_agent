@@ -20,4 +20,4 @@ def get_voice_input():
 
 # ---------------- IMAGE  ----------------
 def get_image_input():
-    return "Generate text from this image: https://www.shutterstock.com/shutterstock/photos/559490020/display_1500/stock-photo-broken-dumbbell-and-on-black-background-559490020.jpg"
+    return "Generate text from this image: https://www.treadmillreviews.net/wp-content/uploads/2012/04/broken-treadmill-display.png.webp"
