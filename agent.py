@@ -13,6 +13,7 @@ Mainagent = Agent(
     model=Groq(id="llama-3.3-70b-versatile"),
     description="Gym equipment ticket agent",
     db=db,
+    enable_user_memories=True,
     tools=[store_ticket],
     session_id=uuid4(),
     instructions=[
