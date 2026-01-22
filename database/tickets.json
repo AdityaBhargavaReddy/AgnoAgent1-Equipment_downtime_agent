@@ -312,5 +312,284 @@
     "urgency": "High",
     "status": "Assigned",
     "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12380",
+    "is_gym_equipment": true,
+    "equipment_name": "Treadmill",
+    "equipment_type": "Cardio",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12381",
+    "is_gym_equipment": true,
+    "equipment_name": "Treadmill",
+    "equipment_type": "Cardio",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12382",
+    "is_gym_equipment": true,
+    "equipment_name": "Treadmill",
+    "equipment_type": "Cardio",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12383",
+    "is_gym_equipment": true,
+    "equipment_name": "Treadmill",
+    "equipment_type": "Cardio",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12384",
+    "is_gym_equipment": true,
+    "equipment_name": "Treadmill",
+    "equipment_type": "Cardio",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12385",
+    "is_gym_equipment": true,
+    "equipment_name": "Treadmill",
+    "equipment_type": "Cardio",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12386",
+    "is_gym_equipment": true,
+    "equipment_name": "Treadmill",
+    "equipment_type": "Cardio",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12387",
+    "is_gym_equipment": true,
+    "equipment_name": "Treadmill",
+    "equipment_type": "Cardio",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12388",
+    "is_gym_equipment": true,
+    "equipment_name": "Treadmill",
+    "equipment_type": "Cardio",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12389",
+    "is_gym_equipment": true,
+    "equipment_name": "Treadmill",
+    "equipment_type": "Cardio",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12390",
+    "is_gym_equipment": true,
+    "equipment_name": "Treadmill",
+    "equipment_type": "Cardio",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12391",
+    "is_gym_equipment": true,
+    "equipment_name": "Treadmill",
+    "equipment_type": "Cardio",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12392",
+    "is_gym_equipment": true,
+    "equipment_name": "Treadmill",
+    "equipment_type": "Cardio",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12393",
+    "is_gym_equipment": true,
+    "equipment_name": "Treadmill",
+    "equipment_type": "Cardio",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12394",
+    "is_gym_equipment": true,
+    "equipment_name": "Treadmill",
+    "equipment_type": "Cardio",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-001"
+  },
+  {
+    "ticket_id": "TICKET-12395",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
+  },
+  {
+    "ticket_id": "TICKET-12396",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
+  },
+  {
+    "ticket_id": "TICKET-12397",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
+  },
+  {
+    "ticket_id": "TICKET-12398",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
+  },
+  {
+    "ticket_id": "TICKET-12399",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
+  },
+  {
+    "ticket_id": "TICKET-12400",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
+  },
+  {
+    "ticket_id": "TICKET-12401",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
+  },
+  {
+    "ticket_id": "TICKET-12402",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
+  },
+  {
+    "ticket_id": "TICKET-12403",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
+  },
+  {
+    "ticket_id": "TICKET-12404",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
+  },
+  {
+    "ticket_id": "TICKET-12405",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
+  },
+  {
+    "ticket_id": "TICKET-12406",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
+  },
+  {
+    "ticket_id": "TICKET-12407",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
+  },
+  {
+    "ticket_id": "TICKET-12408",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
+  },
+  {
+    "ticket_id": "TICKET-12409",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
+  },
+  {
+    "ticket_id": "TICKET-12410",
+    "is_gym_equipment": true,
+    "equipment_name": "Dumbbells",
+    "equipment_type": "Free Weights",
+    "urgency": "High",
+    "status": "Assigned",
+    "vendor_id": "VEND-003"
   }
 ]
