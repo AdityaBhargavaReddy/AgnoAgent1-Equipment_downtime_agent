@@ -1,5 +1,6 @@
 import json
 import os
+from tools.email_user import email_user
 
 TICKET_DB = "database/tickets.json"
 VENDOR_DB = "database/vendors.json"
@@ -12,40 +13,25 @@ def _generate_ticket_id(tickets):
     return f"TICKET-{int(last_id.split('-')[1]) + 1:05d}"
 
 
-def _select_vendor(equipment_name: str, equipment_type: str) -> str:
-    """
-    Selects the best available vendor based on:
-    1. equipment_name + equipment_type
-    2. equipment_type only
-    3. any active vendor (fallback)
-    """
-    if not os.path.exists(VENDOR_DB):
-        return "UNASSIGNED"
+def _load_json_safe(path):
+    if not os.path.exists(path):
+        return []
+    with open(path, "r") as f:
+        try:
+            return json.load(f)
+        except json.JSONDecodeError:
+            return []
 
-    with open(VENDOR_DB, "r") as f:
-        vendors = json.load(f)
 
+def _select_vendor(equipment_type: str):
+    vendors = _load_json_safe(VENDOR_DB)
     active_vendors = [v for v in vendors if v.get("active")]
 
-    # 1️⃣ Exact match
-    for v in active_vendors:
-        caps = v.get("capabilities", {})
-        if (
-            equipment_name in caps.get("equipment_names", [])
-            and equipment_type in caps.get("equipment_types", [])
-        ):
-            return v["vendor_id"]
-
-    # 2️⃣ Type match
     for v in active_vendors:
         if equipment_type in v.get("capabilities", {}).get("equipment_types", []):
-            return v["vendor_id"]
+            return v
 
-    # 3️⃣ Emergency fallback
-    if active_vendors:
-        return active_vendors[0]["vendor_id"]
-
-    return "UNASSIGNED"
+    return None
 
 
 def store_ticket(
@@ -57,19 +43,12 @@ def store_ticket(
 ) -> dict:
     os.makedirs("database", exist_ok=True)
 
-    # Load existing tickets
-    if os.path.exists(TICKET_DB):
-        with open(TICKET_DB, "r") as f:
-            tickets = json.load(f)
-    else:
-        tickets = []
-
+    tickets = _load_json_safe(TICKET_DB)
     ticket_id = _generate_ticket_id(tickets)
 
-    # ✅ Vendor assignment happens HERE (not in agent)
-    vendor_id = _select_vendor(equipment_name, equipment_type)
+    vendor = _select_vendor(equipment_type)
 
-    final_status = "Assigned" if vendor_id != "UNASSIGNED" else "Open"
+    final_status = "Assigned" if vendor else "Open"
 
     ticket = {
         "ticket_id": ticket_id,
@@ -78,7 +57,9 @@ def store_ticket(
         "equipment_type": equipment_type,
         "urgency": urgency,
         "status": final_status,
-        "vendor_id": vendor_id
+        "vendor_id": vendor["vendor_id"] if vendor else None,
+        "vendor_email": vendor["email"] if vendor else None,
+        "vendor_name": vendor["vendor_name"] if vendor else None
     }
 
     tickets.append(ticket)
@@ -86,4 +67,22 @@ def store_ticket(
     with open(TICKET_DB, "w") as f:
         json.dump(tickets, f, indent=2)
 
-    return ticket
+    # ✅ EMAIL SENT HERE (DETERMINISTIC, SAFE)
+    if final_status == "Assigned":
+        email_user(
+            to_email=vendor["email"],
+            subject="New Gym Equipment Ticket Assigned",
+            body=(
+                f"Ticket ID: {ticket_id}\n"
+                f"Equipment: {equipment_name}\n"
+                f"Type: {equipment_type}\n"
+                f"Urgency: {urgency}"
+            )
+        )
+
+    return {
+        "ticket_id": ticket_id,
+        "status": final_status,
+        "vendor_email": ticket["vendor_email"],
+        "vendor_name": ticket["vendor_name"]
+    }

@@ -3,112 +3,96 @@ from agno.agent import Agent
 from agno.models.groq import Groq
 from agno.db.json import JsonDb
 
-
-from tools.email_user import email_user
 from tools.store_ticket import store_ticket
 
 db = JsonDb(db_path="database/json_db")
 
-
-
 Mainagent = Agent(
-    id="All in One Agent",
-    name="All in One Agent",
+    id="Gym-Equipment-Agent",
+    name="Gym Equipment Agent",
     model=Groq(id="llama-3.3-70b-versatile"),
-    description="Gym equipment ticket agent with vendor notification",
+    description="Creates gym equipment tickets and notifies vendors",
     db=db,
-    tools=[store_ticket,email_user],
+    tools=[store_ticket],  # ❗ ONLY ONE TOOL
     session_id=uuid4(),
     instructions=[
-"""You are a Gym Equipment Ticket Agent.
+        """
+You are a Gym Equipment Ticket Agent.
 
 Your job is to:
-1. Identify gym equipment issues
+1. Detect gym equipment issues
 2. Create exactly ONE ticket
-3. Notify the assigned vendor by email exactly ONCE
-4. STOP execution immediately after completing the steps
+3. STOP execution immediately after ticket creation
 
 ==================================================
-GLOBAL HARD RULES (MANDATORY)
+GLOBAL HARD RULES
 ==================================================
-- You MUST NEVER retry any tool.
-- Each tool may be called AT MOST ONCE.
-- If a tool fails for ANY reason, STOP immediately.
-- Do NOT attempt recovery, retries, or alternative actions.
-- Do NOT call any tool more than once.
-- After tool execution, you MUST return a final response and END.
-
-Violating these rules is NOT allowed.
+- Call store_ticket EXACTLY ONCE
+- NEVER retry tools
+- NEVER send email yourself
+- store_ticket handles vendor notification internally
+- After tool execution, END
 
 ==================================================
-STEP 1: GYM EQUIPMENT VALIDATION
+STEP 1: VALIDATION
 ==================================================
-If the input does NOT describe gym equipment or gym machines,
-return ONLY the following JSON and STOP:
+If input is not about gym equipment, return:
 
-{
-  "is_gym_equipment": false
-}
-
-Do NOT call any tool.
+{ "is_gym_equipment": false }
 
 ==================================================
 STEP 2: NORMALIZATION
 ==================================================
-Normalize equipment into one of these categories:
-
+Normalize equipment type:
 - Dumbbell, Barbell, Weight Plates → Free Weights
-- Treadmill, Elliptical, Exercise Bike → Cardio
-- Chest Press, Leg Press, Lat Pulldown → Strength
+- Treadmill, Elliptical, Bike → Cardio
+- Chest Press, Leg Press → Strength
 
 ==================================================
 STEP 3: URGENCY
 ==================================================
-- If equipment is broken, unusable, missing → High
-- Otherwise → Medium or Low
+Broken / unusable / missing → High
+Else → Medium or Low
 
 ==================================================
-STEP 4: CREATE TICKET (STRICT)
+STEP 4: CREATE TICKET
 ==================================================
-Call store_ticket EXACTLY ONCE with:
+Call store_ticket with:
 - is_gym_equipment
 - equipment_name
 - equipment_type
 - urgency
 - status
-
-Do NOT retry store_ticket under any circumstances.
-
 ==================================================
-STEP 5: EMAIL NOTIFICATION (STRICT)
+FINAL RESPONSE (MANDATORY)
 ==================================================
-ONLY IF the ticket returned by store_ticket has:
+After store_ticket completes successfully:
 
-status = "Assigned"
+Return a clear, user-friendly summary of the entire process, including:
+- Equipment name
+- Equipment type
+- Urgency
+- Ticket ID
+- Whether a vendor was assigned
+- Whether vendor notification was sent
 
-Call email_user EXACTLY ONCE using this structure:
+Example format (adapt dynamically):
 
-email_user(
-  to_email="<vendor_email>",
-  subject="New Gym Equipment Ticket Assigned",
-  body="Ticket ID: <ticket_id>\nEquipment: <equipment_name>\nType: <equipment_type>\nUrgency: <urgency>"
-)
+"✅ Ticket Created Successfully
 
+• Ticket ID: <ticket_id>
+• Equipment: <equipment_name>
+• Category: <equipment_type>
+• Urgency Level: <urgency>
+• Status: <status>
 
-Rules:
-- kwargs MUST contain to_email, subject, and body
-- Do NOT modify this structure
-- Do NOT retry email_user
-- If email_user fails, STOP immediately
+📧 Vendor Notification:
+• Vendor Assigned: <vendor_name or Not Assigned>
+• Email Sent: Yes (if Assigned) / No (if Open)
 
-==================================================
-FINAL RESPONSE RULE
-==================================================
-After completing the above steps:
-- Do NOT call any more tools
-- Do NOT repeat actions
-- Return a short confirmation message
-- END execution
+⏹️ Process completed successfully."
+
+Then STOP execution immediately.
 
 """
     ],
